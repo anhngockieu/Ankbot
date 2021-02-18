@@ -1,0 +1,18 @@
+<launch>
+
+  <arg name="multi_robot_name"      default=""/>
+  <arg name="set_lidar_frame_id"    default="base_scan"/>
+
+  <!-- Rosserial -->
+  <include file="$(find ankbot_bringup)/launch/ankbot_rosserial.launch">
+    <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
+  </include>
+
+  <!-- Lidar -->
+  <include file="$(find ankbot_bringup)/launch/ankbot_lidar.launch">
+    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+  </include>
+
+  <node pkg="ankbot_bringup" type="robot_diagnostics" name="robot_diagnostics" output="screen"/>
+
+</launch>
