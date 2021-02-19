@@ -1,0 +1,5 @@
+<launch>
+  <!-- ankbot_teleop_key already has its own built in velocity smoother -->
+  <node pkg="ankbot_teleop" type="ankbot_teleop_key" name="ankbot_teleop_keyboard"  output="screen">
+  </node>
+</launch>
