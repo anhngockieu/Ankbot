@@ -102,6 +102,24 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_footprint:
+          Value: true
+        base_link:
+          Value: false
+        base_scan:
+          Value: false
+        caster_back_link:
+          Value: false
+        imu_link:
+          Value: false
+        map:
+          Value: true
+        odom:
+          Value: false
+        wheel_left_link:
+          Value: false
+        wheel_right_link:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true

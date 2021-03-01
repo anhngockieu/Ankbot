@@ -55,7 +55,16 @@
   <build_export_depend>sensor_msgs</build_export_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
-
+  <exec_depend>ankbot_bringup</exec_depend>
+  <exec_depend>slam_gmapping</exec_depend>
+  <exec_depend>cartographer</exec_depend>
+  <exec_depend>cartographer_ros</exec_depend>
+  <exec_depend>cartographer_ros_msgs</exec_depend>
+  <exec_depend>cartographer_rviz</exec_depend>
+  <exec_depend>hector_mapping</exec_depend>
+  <exec_depend>slam_karto</exec_depend>
+  <exec_depend>frontier_exploration</exec_depend>
+  <exec_depend>navigation_stage</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
