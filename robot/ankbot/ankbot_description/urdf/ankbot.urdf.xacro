@@ -14,7 +14,7 @@
   
   <link name="base_link">
     <visual>
-      <origin xyz="0 0 0.06" rpy="0 0 -1.5707"/>
+      <origin xyz="0 0 0.062" rpy="0 0 1.5707"/>
       <geometry>
         <mesh filename="package://ankbot_description/meshes/robot_base.dae"/>
       </geometry>

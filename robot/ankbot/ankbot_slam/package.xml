@@ -56,6 +56,7 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>ankbot_bringup</exec_depend>
+  <exec_depend>ankbot_description</exec_depend>
   <exec_depend>slam_gmapping</exec_depend>
   <exec_depend>cartographer</exec_depend>
   <exec_depend>cartographer_ros</exec_depend>

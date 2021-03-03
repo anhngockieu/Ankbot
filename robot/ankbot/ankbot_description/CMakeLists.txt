@@ -9,6 +9,7 @@ project(ankbot_description)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   urdf
+  xacro
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,6 +106,7 @@ catkin_package(
 #  LIBRARIES ankbot_description
 #  CATKIN_DEPENDS urdf
 #  DEPENDS system_lib
+CATKIN_DEPENDS urdf xacro
 )
 
 ###########
@@ -114,7 +116,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+ include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -182,6 +184,9 @@ include_directories(
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
 # )
+install(DIRECTORY meshes rviz urdf
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
