@@ -1,0 +1,131 @@
+#!/usr/bin/env python
+
+import rospy
+from geometry_msgs.msg import Twist
+from std_msgs.msg import String
+import sys, select, os
+global key
+
+
+ROBOT_MAX_LIN_VEL = 0.86
+ROBOT_MAX_ANG_VEL = 6.63
+
+ROBOT_LINEAR_VEL_STEP_SIZE = 0.03
+ROBOT_ANGULAR_VEL_STEP_SIZE = 0.2
+
+robot_node_name = 'remote_web'
+
+msg = """
+Control your robot!
+-------------------
+Moving key
+        U
+    L   S   R
+        D 
+
+U : the robot goes straight
+D : the robot goes backwards 
+L : the robot turn left
+R : the robot turn right
+
+Press Ctrl+C to quit
+"""
+
+err = """
+Communications failed -_-
+"""
+class remote_web():
+    def callback(self,data):
+        # rospy.loginfo(rospy.get_caller_id() + "I heard %d", data.data) 
+        key = data.data 
+        return key
+
+    def vels(self,target_linear_vel, target_angular_vel):
+        return "currently:\tlinear vel %s\t angular vel %s " % (self.target_linear_vel, self.target_angular_vel)
+
+    def makeSimpleProfile(self,output, input, slop):
+        if input > output:
+            output = min(input, output + slop)
+        elif input < output:
+            output = max(input, output - slop)
+        else:
+            output = input
+        return output
+
+    def constrain(self,input, low, high):
+        if input < low:
+            input = low
+        elif input > high:
+            input = high
+        else:
+            input = input
+        return input
+
+    def checkLinearLimitVelocity(self,vel):
+        vel = self.constrain(vel, -ROBOT_MAX_LIN_VEL, ROBOT_MAX_LIN_VEL)
+        return vel 
+
+    def checkAngularLimitVelocity(self,vel):
+        vel = self.constrain(vel, -ROBOT_MAX_ANG_VEL, ROBOT_MAX_ANG_VEL)
+        return vel
+
+    def __init__(self):
+        self.button_sub = rospy.Subscriber('button', String, self.get_button, queue_size=1)
+        
+
+        self.target_linear_vel   = 0.0
+        self.target_angular_vel  = 0.0
+        self.control_linear_vel  = 0.0
+        self.control_angular_vel = 0.0
+
+        rospy.init_node('remote_web',anonymous=False)
+        self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+
+        # finally:
+        #     twist = Twist()
+        #     twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
+        #     twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
+        #     pub.publish(twist)
+
+    def get_button(self,button):
+        if button.data == "U": 
+            self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel+ROBOT_LINEAR_VEL_STEP_SIZE)
+            print(self.vels(self.target_linear_vel, self.target_angular_vel))
+        elif button.data == "D":
+            self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel-ROBOT_LINEAR_VEL_STEP_SIZE)
+            print(self.vels(self.target_linear_vel, self.target_angular_vel))
+        elif button.data == "L":
+            self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel+ROBOT_ANGULAR_VEL_STEP_SIZE)
+            print(self.vels(self.target_linear_vel, self.target_angular_vel))
+        elif button.data == "R":
+            self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel-ROBOT_ANGULAR_VEL_STEP_SIZE)
+            print(self.vels(self.target_linear_vel, self.target_angular_vel))
+        elif button.data == ' '  or button.data == 'S':
+            self.target_linear_vel   = 0.0
+            self.control_linear_vel  = 0.0
+            self.self.target_angular_vel  = 0.0
+            self.control_angular_vel = 0.0
+            print(self.vels(self.target_linear_vel, self.target_angular_vel))
+        
+        twist = Twist()
+
+        self.control_linear_vel = self.makeSimpleProfile(self.control_linear_vel, self.target_linear_vel, (ROBOT_LINEAR_VEL_STEP_SIZE/2.0))
+        twist.linear.x = self.control_linear_vel
+        twist.linear.y = 0.0
+        twist.linear.z = 0.0
+
+        self.control_angular_vel = self.makeSimpleProfile(self.control_angular_vel, self.target_angular_vel, (ROBOT_ANGULAR_VEL_STEP_SIZE/2.0))
+        twist.angular.x = 0.0
+        twist.angular.y = 0.0
+        twist.angular.z = self.control_angular_vel
+
+        self.pub.publish(twist)
+
+
+if __name__ == "__main__":
+    try:
+	print(msg)
+        remote_web()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        rospy.loginfo("remote_web node terminated.")
