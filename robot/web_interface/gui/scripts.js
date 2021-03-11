@@ -1,5 +1,6 @@
+var ip = location.hostname;
 var ros = new ROSLIB.Ros({
-	url : 'ws://localhost:9090'
+	url : 'ws://' + ip + ':9090'
 });
 
 ros.on('connection', function() {
@@ -32,14 +33,14 @@ function display1() {
 
 function display2() {
 	var txt = new ROSLIB.Message({
-		data: "D"
+		data: "L"
 	});
 	test_button.publish(txt);
 }
 
 function display3() {
 	var txt = new ROSLIB.Message({
-		data: "L"
+		data: "S"
 	});
 	test_button.publish(txt);
 }
@@ -50,3 +51,11 @@ function display4() {
 	});
 	test_button.publish(txt);
 }
+
+function display5() {
+	var txt = new ROSLIB.Message({
+		data: "D"
+	});
+	test_button.publish(txt);
+}
+

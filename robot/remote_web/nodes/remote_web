@@ -103,7 +103,7 @@ class remote_web():
         elif button.data == ' '  or button.data == 'S':
             self.target_linear_vel   = 0.0
             self.control_linear_vel  = 0.0
-            self.self.target_angular_vel  = 0.0
+            self.target_angular_vel  = 0.0
             self.control_angular_vel = 0.0
             print(self.vels(self.target_linear_vel, self.target_angular_vel))
         

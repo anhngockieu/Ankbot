@@ -11,28 +11,39 @@
 	<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 	<script type="text/javascript" src="scripts.js"></script>
 </head>
-<body class="w3-white">
-	<div class="w3-center w3-card>
-		<img src="logo.png" class="w3-round" alt="logo">
-	</div>
-	<div class="w3-card w3-center" style="width:100%">
-		<img src="logo.png" class="w3-round" alt="logo">
+<style>
+	img {
+	  width: 10%;
+	  height: auto;
+	}
+	</style>
+<body class="w3-light-grey">
+	<div class="w3-card w3-center" style="width: 100%">
+		<img src="logoBK.png" class="w3-round" alt="logo" width="2135" height="2042">
 		<div class="w3-container">
-		  <h4><b>INDRUINO TECHNOLOGY SOLUTIONS CO., LTD</b></h4>
-		  <p>The power in your hands</p>
+		  <h4><b>BACH KHOA UNIVERSITY</b></h4>
+		  <p>DEPARTMENT OF CONTROL AND AUTOMATION</p>
 		</div>
 	</div>
 	<div class="w3-container">
-		<h1 class="w3-center w3-jumbo">AGV - Position Controller</h1>
-		<table class="w3-table">
+		<h5 class="w3-center w3-jumbo">Controller</h5>
+		<table class="w3-table" style="width: 100%;">
 			<tr>
-				<th class="w3-center"><button onclick="display1()" class="w3-button w3-teal w3-jumbo">Position A</button></th>
-				<th class="w3-center"><button onclick="display2()" class="w3-button w3-teal w3-jumbo">Position B</button></th>
+				<th></th>
+				<th class="w3-center"><button onclick="display1()" class="w3-circle w3-teal w3-jumbo" >U</button></th>
+				
 			</tr>
 			
 			<tr>
-				<th class="w3-center"><button onclick="display3()" class="w3-button w3-teal w3-jumbo">Position C</button></th>
-				<th class="w3-center"><button onclick="display4()" class="w3-button w3-teal w3-jumbo">Position D</button></th>
+				
+				<th class="w3-center"><button onclick="display2()" class="w3-circle w3-teal w3-jumbo">L</button></th>
+				<th class="w3-center"><button onclick="display3()" class="w3-circle w3-teal w3-jumbo">S</button></th>
+				<th class="w3-center"><button onclick="display4()" class="w3-circle w3-teal w3-jumbo">R</button></th>
+			</tr>
+
+			<tr>
+				<th></th>
+				<th class="w3-center"><button onclick="display5()" class="w3-circle w3-teal w3-jumbo">D</button></th>
 			</tr>
 		</table>
 	</div>
