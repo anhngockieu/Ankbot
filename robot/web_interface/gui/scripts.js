@@ -20,33 +20,33 @@ ros.on('close', function() {
 var test_button = new ROSLIB.Topic({
 	ros : ros,
 	name : "/button",
-	messageType : 'std_msgs/Byte'
+	messageType : 'std_msgs/String'
 });
 
 function display1() {
 	var txt = new ROSLIB.Message({
-		data: 1
+		data: "U"
 	});
 	test_button.publish(txt);
 }
 
 function display2() {
 	var txt = new ROSLIB.Message({
-		data: 2
+		data: "D"
 	});
 	test_button.publish(txt);
 }
 
 function display3() {
 	var txt = new ROSLIB.Message({
-		data: 3
+		data: "L"
 	});
 	test_button.publish(txt);
 }
 
 function display4() {
 	var txt = new ROSLIB.Message({
-		data: 4
+		data: "R"
 	});
 	test_button.publish(txt);
 }
