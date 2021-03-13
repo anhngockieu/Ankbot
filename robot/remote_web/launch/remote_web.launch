@@ -1,7 +1,13 @@
 <launch>
+  <arg name="packages_path" default="gui"/>
+  <arg name="packages_port" default="8001"/>
   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
-
-  <!-- ankbot_teleop_key already has its own built in velocity smoother -->
+  <include file="$(find web_interface)/launch/web_interface.launch">
+    <arg name="port" value="$(arg packages_port)" />
+    <arg name="webpath" value="$(arg packages_path)" />
+  </include>
+  
+  <!-- run remote_web.py -->
   <node pkg="remote_web" type="remote_web" name="remote_web"  output="screen">
   
   </node>
