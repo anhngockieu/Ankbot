@@ -156,7 +156,7 @@ include_directories(
 #############
 ## Install ##
 #############
-install(DIRECTORY launch maps param rviz
+install(DIRECTORY launch maps param param_test rviz
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 ) 
 # all install targets should use catkin DESTINATION variables
