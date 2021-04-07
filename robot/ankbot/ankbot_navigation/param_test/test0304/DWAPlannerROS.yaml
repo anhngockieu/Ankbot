@@ -20,14 +20,14 @@ dictitems:
         state: []
       id: 0
       max_scaling_factor: 0.2
-      max_vel_theta: 2.75
+      max_vel_theta: 2.0
       max_vel_trans: 0.4
       max_vel_x: 0.4
-      max_vel_y: 0.15838444032453627
+      max_vel_y: 0.2567563603677268
       min_vel_theta: 0.0
       min_vel_trans: 0.12
       min_vel_x: -0.25
-      min_vel_y: -0.15838444032453627
+      min_vel_y: -0.2235264828971491
       name: Default
       occdist_scale: 0.02
       oscillation_reset_angle: 0.2
@@ -55,14 +55,14 @@ dictitems:
       yaw_goal_tolerance: 0.17
     state: []
   max_scaling_factor: 0.2
-  max_vel_theta: 2.75
+  max_vel_theta: 2.0
   max_vel_trans: 0.4
   max_vel_x: 0.4
-  max_vel_y: 0.15838444032453627
+  max_vel_y: 0.2567563603677268
   min_vel_theta: 0.0
   min_vel_trans: 0.12
   min_vel_x: -0.25
-  min_vel_y: -0.15838444032453627
+  min_vel_y: -0.2235264828971491
   occdist_scale: 0.02
   oscillation_reset_angle: 0.2
   oscillation_reset_dist: 0.05
