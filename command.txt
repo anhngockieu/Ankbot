@@ -1,0 +1,16 @@
+
+export ROS_MASTER_URI=http://192.168.100.14:11311
+export ROS_HOSTNAME=192.168.100.14
+
+alias world='roslaunch ankbot_gazebo ankbot_world.launch'
+alias slam='roslaunch ankbot_slam ankbot_slam.launch'
+alias teleop='roslaunch ankbot_teleop ankbot_teleop_key.launch'
+alias navigation='roslaunch ankbot_navigation ankbot_navigation.launch'
+alias rqtconfig='rosrun rqt_reconfigure rqt_reconfigure'
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+alias eb='nano ~/.bashrc'
+alias sb='source ~/.bashrc'
+alias cw='cd ~/catkin_ws'
+alias cs='cd ~/catkin_ws/src'
+alias cb='cd ~/catkin_ws && catkin build'
