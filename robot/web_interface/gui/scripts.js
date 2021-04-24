@@ -58,4 +58,11 @@ function display5() {
 	});
 	test_button.publish(txt);
 }
-
+function constrain(input, low, high){
+	if (input < low)
+		input = low;
+	else if (input > high)
+		input = high;
+	else { input = input; }
+	return input;
+}

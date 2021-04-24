@@ -82,28 +82,33 @@ class remote_web():
         
         
     def get_button(self,button):
-        try:
-            self.pub.publish(twist)
-            while(1):
+        while(1):
+            try:
+                self.pub.publish(twist)
+                # 
                 if button.data == "U": 
                     self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel+ROBOT_LINEAR_VEL_STEP_SIZE)
                     print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                    button.data =""
                 elif button.data == "D":
                     self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel-ROBOT_LINEAR_VEL_STEP_SIZE)
                     print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                    button.data =""
                 elif button.data == "L":
                     self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel+ROBOT_ANGULAR_VEL_STEP_SIZE)
                     print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                    button.data =""
                 elif button.data == "R":
                     self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel-ROBOT_ANGULAR_VEL_STEP_SIZE)
                     print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                    button.data =""
                 elif button.data == 'S':
-                # elif button.data == 'S':
                     self.target_linear_vel   = 0.0
                     self.control_linear_vel  = 0.0
                     self.target_angular_vel  = 0.0
                     self.control_angular_vel = 0.0
                     print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                    button.data =""
                 
                 twist = Twist()
 
@@ -116,17 +121,17 @@ class remote_web():
                 twist.angular.x = 0.0
                 twist.angular.y = 0.0
                 twist.angular.z = self.control_angular_vel
-
                 
-                button.data =""
-        except:
-             print(err)
 
-        finally:
-            twist = Twist()
-            twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
-            twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
-            self.pub.publish(twist)
+            except:
+                print(err)
+
+            finally:
+                twist = Twist()
+                twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
+                twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
+                self.pub.publish(twist)
+                
 
 if __name__ == "__main__":
     try:
