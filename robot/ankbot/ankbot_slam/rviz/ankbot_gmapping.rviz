@@ -9,15 +9,15 @@ Panels:
         - /RobotModel1
         - /TF1
         - /TF1/Frames1
-        - /TF1/Frames1/base_scan1
         - /TF1/Frames1/imu_link1
         - /TF1/Frames1/imu_link1/Position1
         - /TF1/Frames1/imu_link1/Orientation1
         - /TF1/Frames1/imu_link1/Relative Position1
         - /TF1/Frames1/imu_link1/Relative Orientation1
-        - /TF1/Frames1/map1
+        - /TF1/Tree1/map1
+        - /TF1/Tree1/map1/odom1
+        - /TF1/Tree1/map1/odom1/base_footprint1
         - /LaserScan1
-        - /LaserScan1/Status1
         - /Map1
         - /Odometry1
       Splitter Ratio: 0.594406008720398
@@ -136,7 +136,7 @@ Visualization Manager:
         caster_front_link:
           Value: false
         imu_link:
-          Value: false
+          Value: true
         map:
           Value: false
         odom:
@@ -270,7 +270,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -0.8657987117767334
+      Angle: -3.0357983112335205
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -280,11 +280,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 165.11280822753906
+      Scale: 194.38677978515625
       Target Frame: map
       Value: TopDownOrtho (rviz)
-      X: 13.571734428405762
-      Y: 5.178983211517334
+      X: 0.13095635175704956
+      Y: 0.8255047798156738
     Saved: ~
 Window Geometry:
   Displays:
