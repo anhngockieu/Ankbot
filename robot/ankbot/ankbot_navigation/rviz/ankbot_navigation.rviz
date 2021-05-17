@@ -8,16 +8,11 @@ Panels:
         - /TF1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /Map1
-        - /Planner Plan1
-        - /Global Map1
         - /Global Map1/Costmap1
         - /Global Map1/Planner1
         - /Local Map1/Polygon1
         - /Local Map1/Costmap1
         - /Local Map1/Planner1
-        - /Amcl Particles1
-        - /Goal1
       Splitter Ratio: 0.5
     Tree Height: 798
   - Class: rviz/Selection
@@ -366,7 +361,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 8.170090675354004
+      Distance: 8.564824104309082
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -381,10 +376,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.1897966861724854
+      Pitch: 1.439797043800354
       Target Frame: <Fixed Frame>
       Value: ThirdPersonFollower (rviz)
-      Yaw: 3.430420398712158
+      Yaw: 3.0904204845428467
     Saved: ~
 Window Geometry:
   Displays:
