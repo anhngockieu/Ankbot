@@ -1,0 +1,23 @@
+<launch>
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="1.0"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ankbot_gazebo)/worlds/robot_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="ankbot_description" command="$(find xacro)/xacro --inorder $(find ankbot_description)/urdf/ankbot.urdf.xacro" />
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model ankbot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param ankbot_description" />
+
+
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+	<node pkg="tf2_web_republisher" type="tf2_web_republisher" name="tf2_web_republisher"/>
+
+</launch>	  
