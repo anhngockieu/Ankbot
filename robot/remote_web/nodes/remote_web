@@ -2,6 +2,7 @@
 
 import rospy
 from geometry_msgs.msg import Twist
+from rospy.topics import Publisher
 from std_msgs.msg import String
 import sys, select, os
 global key
@@ -35,11 +36,7 @@ err = """
 Communications failed -_-
 """
 class remote_web():
-    # def callback(self,data):
-    #     # rospy.loginfo(rospy.get_caller_id() + "I heard %d", data.data) 
-    #     key = data.data 
-    #     return key
-
+    
     def vels(self,target_linear_vel, target_angular_vel):
         return "currently:\tlinear vel %s\t angular vel %s " % (self.target_linear_vel, self.target_angular_vel)
 
@@ -72,66 +69,78 @@ class remote_web():
     def __init__(self):
         rospy.init_node('remote_web',anonymous=False)
         self.button_sub = rospy.Subscriber('button', String, self.get_button, queue_size=1)
-        self.pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-
+        self.pub = rospy.Publisher('cmd_vel', Twist,queue_size=10)
+        self.rate = rospy.Rate(5)
         self.target_linear_vel   = 0.0
         self.target_angular_vel  = 0.0
         self.control_linear_vel  = 0.0
         self.control_angular_vel = 0.0
+        while not rospy.is_shutdown():
+            twist = Twist()
 
-        
-        
+            self.control_linear_vel = self.makeSimpleProfile(self.control_linear_vel, self.target_linear_vel, (ROBOT_LINEAR_VEL_STEP_SIZE/2.0))
+            twist.linear.x = self.target_linear_vel
+            twist.linear.y = 0.0
+            twist.linear.z = 0.0
+
+            self.control_angular_vel = self.makeSimpleProfile(self.control_angular_vel, self.target_angular_vel, (ROBOT_ANGULAR_VEL_STEP_SIZE/2.0))
+            twist.angular.x = 0.0
+            twist.angular.y = 0.0
+            twist.angular.z = self.target_angular_vel
+            self.pub.publish(twist)
+            self.rate.sleep()
+            
     def get_button(self,button):
-        while(1):
-            try:
-                self.pub.publish(twist)
-                # 
-                if button.data == "U": 
-                    self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel+ROBOT_LINEAR_VEL_STEP_SIZE)
-                    print(self.vels(self.target_linear_vel, self.target_angular_vel))
-                    button.data =""
-                elif button.data == "D":
-                    self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel-ROBOT_LINEAR_VEL_STEP_SIZE)
-                    print(self.vels(self.target_linear_vel, self.target_angular_vel))
-                    button.data =""
-                elif button.data == "L":
-                    self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel+ROBOT_ANGULAR_VEL_STEP_SIZE)
-                    print(self.vels(self.target_linear_vel, self.target_angular_vel))
-                    button.data =""
-                elif button.data == "R":
-                    self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel-ROBOT_ANGULAR_VEL_STEP_SIZE)
-                    print(self.vels(self.target_linear_vel, self.target_angular_vel))
-                    button.data =""
-                elif button.data == 'S':
-                    self.target_linear_vel   = 0.0
-                    self.control_linear_vel  = 0.0
-                    self.target_angular_vel  = 0.0
-                    self.control_angular_vel = 0.0
-                    print(self.vels(self.target_linear_vel, self.target_angular_vel))
-                    button.data =""
-                
-                twist = Twist()
+        # while not rospy.is_shutdown():
+        try: 
+            # while not rospy.is_shutdown():
+            if  button.data == "U" : 
+                self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel+ROBOT_LINEAR_VEL_STEP_SIZE)
+                print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                button.data =""
+            elif button.data == "D":
+                self.target_linear_vel = self.checkLinearLimitVelocity(self.target_linear_vel-ROBOT_LINEAR_VEL_STEP_SIZE)
+                print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                button.data =""
+            elif button.data == "L":
+                self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel+ROBOT_ANGULAR_VEL_STEP_SIZE)
+                print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                button.data =""
+            elif button.data == "R":
+                self.target_angular_vel = self.checkAngularLimitVelocity(self.target_angular_vel-ROBOT_ANGULAR_VEL_STEP_SIZE)
+                print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                button.data =""
+            elif button.data == 'S':
+                self.target_linear_vel   = 0.0
+                self.control_linear_vel  = 0.0
+                self.target_angular_vel  = 0.0
+                self.control_angular_vel = 0.0
+                print(self.vels(self.target_linear_vel, self.target_angular_vel))
+                button.data =""
 
-                self.control_linear_vel = self.makeSimpleProfile(self.control_linear_vel, self.target_linear_vel, (ROBOT_LINEAR_VEL_STEP_SIZE/2.0))
-                twist.linear.x = self.control_linear_vel
-                twist.linear.y = 0.0
-                twist.linear.z = 0.0
+            twist = Twist()
 
-                self.control_angular_vel = self.makeSimpleProfile(self.control_angular_vel, self.target_angular_vel, (ROBOT_ANGULAR_VEL_STEP_SIZE/2.0))
-                twist.angular.x = 0.0
-                twist.angular.y = 0.0
-                twist.angular.z = self.control_angular_vel
-                
+            self.control_linear_vel = self.makeSimpleProfile(self.control_linear_vel, self.target_linear_vel, (ROBOT_LINEAR_VEL_STEP_SIZE/2.0))
+            twist.linear.x = self.target_linear_vel
+            twist.linear.y = 0.0
+            twist.linear.z = 0.0
 
-            except:
-                print(err)
-
-            finally:
-                twist = Twist()
-                twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
-                twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
-                self.pub.publish(twist)
-                
+            self.control_angular_vel = self.makeSimpleProfile(self.control_angular_vel, self.target_angular_vel, (ROBOT_ANGULAR_VEL_STEP_SIZE/2.0))
+            twist.angular.x = 0.0
+            twist.angular.y = 0.0
+            twist.angular.z = self.target_angular_vel
+            self.pub.publish(twist)
+            # rospy.sleep(1)
+        except:
+            print(err)
+        
+            # self.rate.sleep()
+        finally:
+            twist = Twist()
+            twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
+            twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
+            self.pub.publish(twist)
+            
 
 if __name__ == "__main__":
     try:

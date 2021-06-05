@@ -7,8 +7,10 @@
     <arg name="webpath" value="$(arg packages_path)" />
   </include>
   
+  <!-- TF WEB PUB -->
+  <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" />
   <!-- run remote_web.py -->
-  <node pkg="remote_web" type="remote_web" name="remote_web"  output="screen">
+  <node pkg="remote_web" type="remote_web" name="remote_webb"  output="screen">
   
   </node>
 </launch>
