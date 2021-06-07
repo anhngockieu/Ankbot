@@ -51,7 +51,7 @@ def close_connection(exception):
 @app.before_first_request
 def create_table():
 	
-    subprocess.Popen(["roslaunch", "ankbot_gazebo", "ankbot_world.launch"])
+    # subprocess.Popen(["roslaunch", "ankbot_gazebo", "ankbot_world.launch"])
     with app.app_context():
 	    try:
 	        c = get_db().cursor()
@@ -88,7 +88,7 @@ def index():
 	
 	
 
-	return render_template('index.html',title='Index',map = data)
+	return render_template('index.html',title='SLAM and Navigation',map = data)
 
 
 

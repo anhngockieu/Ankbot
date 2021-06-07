@@ -11,6 +11,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/w3.css')}}">
+
+	<script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+	<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
     {% if title %}
     <title>{{title}}</title>
     {% else %}

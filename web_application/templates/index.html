@@ -2,12 +2,14 @@
 {% block content %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/index.js')}}"></script>
 <div class="bg-image"></div>
+
 <div class="bg-text">
-    <h2>Choose mode</h2>
-    <button class="button-index glow-button" data-toggle="modal" data-target="#exampleModal">Navigation</button>
-
-    <button id="index-map" class="button-index glow-button" style="margin-left: 10%;">Mapping</button>
-
+    <a class="navbar-brand " href="#"><img src="{{url_for('static', filename='../static/css/logoBK.png')}}" width="80" height="80" alt=""></a>
+    <h3><b>BACH KHOA UNIVERSITY</b></h3>
+    <p>DEPARTMENT OF CONTROL AND AUTOMATION</p><br>
+    <h4>Choose mode</h4><br>
+    <button id="index-map" class="button-index glow-button" ><b>SLAM</b></button>
+    <button class="button-index glow-button" data-toggle="modal" data-target="#exampleModal" style="margin-left: 15%;"><b>Navigation</b></button>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
