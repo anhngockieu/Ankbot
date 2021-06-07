@@ -38,25 +38,9 @@ Run docker file from the main directory,
 
 NOTE:Wait for sometime,if you are loading it for the first time(Gazebo takes some time to load for the first time) 
 
-OR do manual installation as follows,
 
-Clone the following into your src of ros workspace and replace the launch file with the uploaded to view the demo.
 
-- `https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git`
 
-- `https://github.com/ROBOTIS-GIT/turtlebot3`
-
-- `https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git`
-
-open bashrc,
-
-`sudo gedit ~/.bashrc`
-
-place the following at the end,
-
-`source` **path to your ros workspace's setup.bash**  (source /home/rizwin/catkin_ws/devel/setup.bash)
-
-`export TURTLEBOT3_MODEL=waffle`
 
 Install Flask,
 
