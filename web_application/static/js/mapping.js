@@ -3,6 +3,8 @@ var pathed = false;
 var homing = false;
 var MAP_WIDTH = (window.innerWidth)*0.65;
 var MAP_HEIGHT = window.innerHeight - (window.innerHeight)*0.08;
+// var MAP_WIDTH = (window.innerWidth)*2;
+// var MAP_HEIGHT = window.innerHeight*2;
 
 $(document).ready(function() {
     $body = $("body");
@@ -128,7 +130,7 @@ $(document).ready(function() {
             position: { right: '8%', bottom: '20%' },
             mode: 'static',
             size: 150,
-            color: 'blue',
+            color: 'red',
         };
         manager = nipplejs.create(options);
 
@@ -142,8 +144,8 @@ $(document).ready(function() {
         });
 
         manager.on('move', function(event, nipple) {
-            max_linear = 0.2; // m/s
-            max_angular = 0.8; // rad/s
+            max_linear = 0.8; // m/s
+            max_angular = 1.0; // rad/s
             max_distance = 75.0; // pixels;
             linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance / max_distance;
             angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance / max_distance;

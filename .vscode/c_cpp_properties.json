@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/opt/ros/melodic/include/**",
+        "/home/thesis/catkin_ws/devel/include/**",
+        "/home/thesis/catkin_ws/src/Ankbot/robot/ankbot/ankbot_simulations/ankbot_gazebo/include/**",
+        "/home/thesis/catkin_ws/src/Ankbot/robot/ankbot/ankbot_slam/include/**",
+        "/home/thesis/catkin_ws/src/Ankbot/robot_localization/include/**",
+        "/home/thesis/catkin_ws/src/Ankbot/web-node/rosweb/tf2_web_republisher/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

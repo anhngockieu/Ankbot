@@ -5,9 +5,9 @@ import signal
 import os
 import time
 import sqlite3
-# import paramiko
+import paramiko
 app = Flask(__name__)
-# ssh = paramiko.SSHClient()
+
 
 
 DATABASE = os.path.join(os.getcwd(), "static", "database.db")
@@ -51,7 +51,7 @@ def close_connection(exception):
 @app.before_first_request
 def create_table():
 	
-    # subprocess.Popen(["roslaunch", "ankbot_gazebo", "ankbot_world.launch"])
+    
     with app.app_context():
 	    try:
 	        c = get_db().cursor()
@@ -64,18 +64,8 @@ def create_table():
 
 @app.route('/')
 def index():
-	# proc = subprocess.Popen(["sudo",'ssh', "ubtuntu@192.168.43.21"], stdin = subprocess.PIPE)
-	# proc.communicate("02051996")
-	# proc.stdin.write(b'mypassword')
-	# proc.stdin.flush()
-	# try:
-	# 	ssh.connect(hostname="192.168.43.21",port=22,username="ubuntu",password="02051996")
-	# 	stdin, stdout, stderr = ssh.exec_command("serial")
-	# 	lines = stdout.readlines()
-	# 	print(lines)
-	# except:
-	# 	print("Can't connect to Rapberry Pi via SSH. Please check the connection")
-
+	# subprocess.Popen(["roscore"])
+	subprocess.Popen(["roslaunch", "ankbot_gazebo", "ankbot_world.launch"])
 	with get_db():
 	    try:
 	        c = get_db().cursor()
@@ -84,10 +74,6 @@ def index():
 	        c.close()
 	    except Error as e:
 	        print(e)
-	
-	
-	
-
 	return render_template('index.html',title='SLAM and Navigation',map = data)
 
 
