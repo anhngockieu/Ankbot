@@ -17,4 +17,5 @@
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find ankbot_slam)/rviz/ankbot_$(arg slam_methods).rviz"/>
   </group>
+  
 </launch>

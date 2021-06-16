@@ -32,7 +32,8 @@ class roslaunch_process():
     @classmethod
     def start_mapping(self):
 
-        self.process_mapping = subprocess.Popen(["roslaunch", "--wait", "ankbot_slam", "ankbot_slam.launch"])
+        self.process_mapping = subprocess.Popen(["roslaunch", "--wait", "ankbot_slame", "ankbot_slam.launch"])
+		# self.process_mapping = subprocess.Popen(["ls","--wait "])
 
     @classmethod
     def stop_mapping(self):
@@ -65,7 +66,7 @@ def create_table():
 @app.route('/')
 def index():
 	# subprocess.Popen(["roscore"])
-	subprocess.Popen(["roslaunch", "ankbot_gazebo", "ankbot_world.launch"])
+	# subprocess.Popen(["roslaunch", "ankbot_gazebo", "ankbot_world.launch"])
 	with get_db():
 	    try:
 	        c = get_db().cursor()

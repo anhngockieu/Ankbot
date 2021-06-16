@@ -11,6 +11,10 @@ $(document).ready(function() {
     var ros = new ROSLIB.Ros({
         url: 'ws://localhost:9090'
     });
+    // var ip = location.hostname;
+    // var ros = new ROSLIB.Ros({
+    //     url : 'ws://' + ip + ':9090'
+    // });
 
     // Create the main viewer.
     var viewer = new ROS2D.Viewer({
@@ -144,8 +148,8 @@ $(document).ready(function() {
         });
 
         manager.on('move', function(event, nipple) {
-            max_linear = 0.8; // m/s
-            max_angular = 1.0; // rad/s
+            max_linear = 0.4; // m/s
+            max_angular = 1.5; // rad/s
             max_distance = 75.0; // pixels;
             linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance / max_distance;
             angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance / max_distance;

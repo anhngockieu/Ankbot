@@ -15,7 +15,10 @@ $(document).ready(function() {
                     var ros = new ROSLIB.Ros({
                         url: 'ws://localhost:9090'
                     });
-
+                    // var ip = location.hostname;
+                    // var ros = new ROSLIB.Ros({
+                    //     url : 'ws://' + ip + ':9090'
+                    // });
 
 
                     ros.on('connection', function() {
